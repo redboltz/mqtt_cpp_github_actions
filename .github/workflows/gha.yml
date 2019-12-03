@@ -39,7 +39,7 @@ jobs:
     - name: make
       run: |
         cd build
-        make -j4 VERBOSE=1
+        make VERBOSE=1
     - name: ctest
       run: |
         cd build
