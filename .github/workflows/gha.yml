@@ -1,0 +1,22 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: cmake
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+    - name: make check_deps
+      run: make check_deps VERBOSE=1
+    - name: make
+      run: make VERBOSE=1
+    - name: ctest
+      run: ctest -VV
