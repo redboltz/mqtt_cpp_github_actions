@@ -25,10 +25,10 @@ jobs:
         CXX: clang++
       shell: bash
       run: |
-        if [ ${{ matrix.pattern }} == 0]; then 
+        if [ ${{ matrix.pattern }} == 0 ]; then 
           FLAGS="-DMQTT_TEST_1=ON  -DMQTT_TEST_2=ON  -DMQTT_TEST_3=OFF -DMQTT_TEST_4=OFF -DMQTT_TEST_5=ON  -DMQTT_TEST_6=OFF -DMQTT_TEST_7=OFF -DMQTT_USE_TLS=OFF  -DMQTT_BUILD_EXAMPLES=OFF -DMQTT_USE_WS=ON";
         fi
-        if [ ${{ matrix.pattern }} == 1]; then 
+        if [ ${{ matrix.pattern }} == 1 ]; then 
           FLAGS="-DMQTT_TEST_1=OFF -DMQTT_TEST_2=OFF -DMQTT_TEST_3=ON  -DMQTT_TEST_4=OFF -DMQTT_TEST_5=OFF -DMQTT_TEST_6=OFF -DMQTT_TEST_7=OFF -DMQTT_USE_TLS=OFF  -DMQTT_BUILD_EXAMPLES=OFF -DMQTT_USE_WS=ON";
         fi
         mkdir build
@@ -41,10 +41,10 @@ jobs:
     - name: make
       shell: bash
       run: |
-        if [ ${{ matrix.pattern }} == 0]; then 
+        if [ ${{ matrix.pattern }} == 0 ]; then 
           CXXFLAGS="-std=c++14 -Werror -g -Wall -Wextra -Wno-ignored-qualifiers -Wconversion";
         fi
-        if [ ${{ matrix.pattern }} == 1]; then 
+        if [ ${{ matrix.pattern }} == 1 ]; then 
           CXXFLAGS="-std=c++14 -Werror -g -Wall -Wextra -Wno-ignored-qualifiers -Wconversion -DBOOST_ASIO_NO_DEPRECATED";
         fi
         CXXFLAGS="${CXXFLAGS} -pedantic -DBOOST_MULTI_INDEX_ENABLE_SAFE_MODE -DBOOST_MULTI_INDEX_DISABLE_SERIALIZATION -DBOOST_MULTI_INDEX_ENABLE_INVARIANT_CHECKING"
