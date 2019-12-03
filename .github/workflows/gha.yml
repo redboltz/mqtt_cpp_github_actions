@@ -9,10 +9,10 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
-        compiler: [gcc, clang]
+        compiler: [g++, clang++]
         exclude:
         - os: macos-latest
-          compiler: gcc
+          compiler: g++
     steps:
     - uses: actions/checkout@v1
     - name: install boost for linux
@@ -27,20 +27,16 @@ jobs:
         brew install boost
     - name: cmake
       env:
-        CC: ${{ matrix.compiler }}
+        CXX: ${{ matrix.compiler }}
       run: |
         mkdir build
         cd build
         cmake ..
     - name: make check_deps
-      env:
-        CC: ${{ matrix.compiler }}
       run: |
         cd build
         make check_deps VERBOSE=1
     - name: make
-      env:
-        CC: ${{ matrix.compiler }}
       run: |
         cd build
         make -j4 VERBOSE=1
