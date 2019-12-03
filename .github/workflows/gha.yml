@@ -8,8 +8,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-#        pattern: [0, 1, 2, 3, 4, 5, 6]
-        pattern: [0, 1]
+        pattern: [0, 1, 2, 3, 4, 5, 6]
     steps:
     - uses: actions/checkout@v1
     - name: install boost
@@ -31,6 +30,21 @@ jobs:
         if [ ${{ matrix.pattern }} == 1 ]; then 
           FLAGS="-DMQTT_TEST_1=OFF -DMQTT_TEST_2=OFF -DMQTT_TEST_3=ON  -DMQTT_TEST_4=OFF -DMQTT_TEST_5=OFF -DMQTT_TEST_6=OFF -DMQTT_TEST_7=OFF -DMQTT_USE_TLS=OFF  -DMQTT_BUILD_EXAMPLES=OFF -DMQTT_USE_WS=ON";
         fi
+        if [ ${{ matrix.pattern }} == 2 ]; then 
+          FLAGS="-DMQTT_TEST_1=OFF -DMQTT_TEST_2=OFF -DMQTT_TEST_3=OFF -DMQTT_TEST_4=ON  -DMQTT_TEST_5=OFF -DMQTT_TEST_6=ON  -DMQTT_TEST_7=OFF -DMQTT_USE_TLS=OFF  -DMQTT_BUILD_EXAMPLES=OFF -DMQTT_USE_WS=ON";
+        fi
+        if [ ${{ matrix.pattern }} == 3 ]; then 
+          FLAGS="-DMQTT_TEST_1=ON  -DMQTT_TEST_2=OFF -DMQTT_TEST_3=OFF -DMQTT_TEST_4=OFF -DMQTT_TEST_5=OFF -DMQTT_TEST_6=OFF -DMQTT_TEST_7=OFF -DMQTT_USE_TLS=ON -DMQTT_BUILD_EXAMPLES=ON  -DMQTT_USE_WS=ON  -DMQTT_USE_STR_CHECK=ON";
+        fi
+        if [ ${{ matrix.pattern }} == 4 ]; then 
+          FLAGS="-DMQTT_TEST_1=OFF -DMQTT_TEST_2=ON  -DMQTT_TEST_3=ON  -DMQTT_TEST_4=OFF -DMQTT_TEST_5=OFF -DMQTT_TEST_6=OFF -DMQTT_TEST_7=OFF -DMQTT_USE_TLS=ON -DMQTT_BUILD_EXAMPLES=OFF -DMQTT_USE_WS=OFF -DMQTT_USE_STR_CHECK=ON";
+        fi
+        if [ ${{ matrix.pattern }} == 5 ]; then 
+          FLAGS="-DMQTT_TEST_1=OFF -DMQTT_TEST_2=OFF -DMQTT_TEST_3=OFF -DMQTT_TEST_4=ON  -DMQTT_TEST_5=ON  -DMQTT_TEST_6=OFF -DMQTT_TEST_7=OFF -DMQTT_USE_TLS=ON -DMQTT_BUILD_EXAMPLES=OFF -DMQTT_USE_WS=OFF -DMQTT_USE_STR_CHECK=ON";
+        fi
+        if [ ${{ matrix.pattern }} == 6 ]; then 
+          FLAGS="-DMQTT_TEST_1=OFF -DMQTT_TEST_2=OFF -DMQTT_TEST_3=OFF -DMQTT_TEST_4=OFF -DMQTT_TEST_5=OFF -DMQTT_TEST_6=ON  -DMQTT_TEST_7=ON  -DMQTT_USE_TLS=ON -DMQTT_BUILD_EXAMPLES=OFF -DMQTT_USE_WS=OFF -DMQTT_USE_STR_CHECK=ON";
+        fi
         mkdir build
         cd build
         cmake ${FLAGS} ..
@@ -46,6 +60,21 @@ jobs:
         fi
         if [ ${{ matrix.pattern }} == 1 ]; then 
           CXXFLAGS="-std=c++14 -Werror -g -Wall -Wextra -Wno-ignored-qualifiers -Wconversion -DBOOST_ASIO_NO_DEPRECATED";
+        fi
+        if [ ${{ matrix.pattern }} == 2 ]; then 
+          CXXFLAGS="-std=c++14 -Werror -g -Wall -Wextra -Wno-ignored-qualifiers -Wconversion";
+        fi
+        if [ ${{ matrix.pattern }} == 3 ]; then 
+          CXXFLAGS="-std=c++14 -Werror -g -Wall -Wextra -Wno-ignored-qualifiers -Wconversion -DBOOST_ASIO_NO_DEPRECATED";
+        fi
+        if [ ${{ matrix.pattern }} == 4 ]; then 
+          CXXFLAGS="-std=c++14 -Werror -g -Wall -Wextra -Wno-ignored-qualifiers -Wconversion";
+        fi
+        if [ ${{ matrix.pattern }} == 5 ]; then 
+          CXXFLAGS="-std=c++14 -Werror -g -Wall -Wextra -Wno-ignored-qualifiers -Wconversion";
+        fi
+        if [ ${{ matrix.pattern }} == 6 ]; then 
+          CXXFLAGS="-std=c++17 -Werror -g -Wall -Wextra -Wno-ignored-qualifiers -Wconversion";
         fi
         CXXFLAGS="${CXXFLAGS} -pedantic -DBOOST_MULTI_INDEX_ENABLE_SAFE_MODE -DBOOST_MULTI_INDEX_DISABLE_SERIALIZATION -DBOOST_MULTI_INDEX_ENABLE_INVARIANT_CHECKING"
         cd build
