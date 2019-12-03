@@ -4,9 +4,10 @@ on: [push]
 
 jobs:
   macos:
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [macos-latest]
         include: 
           - FLAGS: -DMQTT_TEST_1=ON  -DMQTT_TEST_2=ON  -DMQTT_TEST_3=OFF -DMQTT_TEST_4=OFF -DMQTT_TEST_5=ON  -DMQTT_TEST_6=OFF -DMQTT_TEST_7=OFF -DMQTT_USE_TLS=OFF  -DMQTT_BUILD_EXAMPLES=OFF -DMQTT_USE_WS=ON
             CXXFLAGS: -std=c++14 -Werror -g -Wall -Wextra -Wno-ignored-qualifiers -Wconversion
@@ -55,9 +56,10 @@ jobs:
         cd build
         ctest -VV
   linux:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [ubuntu-latest]
         include:
           - compiler: clang++
             FLAGS: -DMQTT_TEST_1=ON  -DMQTT_TEST_2=ON  -DMQTT_TEST_3=OFF -DMQTT_TEST_4=OFF -DMQTT_TEST_5=OFF -DMQTT_TEST_6=OFF -DMQTT_TEST_7=OFF -DMQTT_USE_TLS=OFF  -DMQTT_BUILD_EXAMPLES=OFF -DMQTT_USE_WS=ON
