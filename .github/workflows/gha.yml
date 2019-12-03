@@ -22,6 +22,10 @@ jobs:
 #    - name: make check_deps
 #      run: make check_deps VERBOSE=1
     - name: make
-      run: make VERBOSE=1
+      run: |
+        cd build
+        make VERBOSE=1
     - name: ctest
-      run: ctest -VV
+      run: |
+        cd build
+        ctest -VV
