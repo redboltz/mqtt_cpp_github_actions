@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: install boost
-      if: matrix.os == macos-latest
+      if: matrix.os == 'macos-latest'
       run: |
         sudo add-apt-repository ppa:mhier/libboost-latest
         sudo apt-get update
