@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: install boost
-      run: sudo apt-get install boost
+      run: sudo apt-get install libboost-all-dev
     - name: cmake
       run: |
         mkdir build
