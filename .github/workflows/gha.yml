@@ -35,11 +35,11 @@ jobs:
     - name: make check_deps
       run: |
         cd build
-        make check_deps VERBOSE=1
+        cmake --build . --target check_deps
     - name: make
       run: |
         cd build
-        make VERBOSE=1
+        cmake --build .
     - name: ctest
       run: |
         cd build
