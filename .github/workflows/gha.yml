@@ -10,7 +10,8 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         compiler: [g++, clang++]
-        tls: [-DMQTT_USE_TLS=ON, -DMQTT_USE_TLS=OFF]
+#        tls: [-DMQTT_USE_TLS=ON, -DMQTT_USE_TLS=OFF]
+        build_selector: [-DMQTT_TEST_1=ON  -DMQTT_TEST_2=ON  -DMQTT_TEST_3=OFF -DMQTT_TEST_4=OFF -DMQTT_TEST_5=ON  -DMQTT_TEST_6=OFF -DMQTT_TEST_7=OFF -DMQTT_USE_TLS=OFF  -DMQTT_BUILD_EXAMPLES=OFF -DMQTT_USE_WS=ON, -DMQTT_TEST_1=OFF -DMQTT_TEST_2=OFF -DMQTT_TEST_3=ON  -DMQTT_TEST_4=OFF -DMQTT_TEST_5=OFF -DMQTT_TEST_6=OFF -DMQTT_TEST_7=OFF -DMQTT_USE_TLS=OFF  -DMQTT_BUILD_EXAMPLES=OFF -DMQTT_USE_WS=ON]
         exclude:
         - os: macos-latest
           compiler: g++
@@ -48,7 +49,7 @@ jobs:
         export
         mkdir build
         cd build
-        cmake ${{ matrix.tls }} ..
+        cmake ${{ matrix.build_selector }} ..
     - name: make check_deps
       run: |
         cd build
