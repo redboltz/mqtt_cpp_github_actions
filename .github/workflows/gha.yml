@@ -10,7 +10,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         compiler: [g++, clang++]
-        MQTT_USE_TLS: [ON, OFF]
+        tls: [-DMQTT_USE_TLS=ON, -DMQTT_USE_TLS=OFF]
         exclude:
         - os: macos-latest
           compiler: g++
@@ -32,7 +32,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake ..
+        cmake ${{ matrix.tls }} ..
     - name: make check_deps
       run: |
         cd build
