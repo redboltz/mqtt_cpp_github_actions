@@ -37,6 +37,7 @@ jobs:
       env:
         CXX: ${{ matrix.compiler }}
       run: |
+        export
         mkdir build
         cd build
         cmake ${{ matrix.tls }} ..
