@@ -19,8 +19,10 @@ jobs:
         mkdir build
         cd build
         cmake ..
-#    - name: make check_deps
-#      run: make check_deps VERBOSE=1
+    - name: make check_deps
+      run: |
+        cd build
+        make check_deps VERBOSE=1
     - name: make
       run: |
         cd build
