@@ -32,7 +32,7 @@ jobs:
         brew install openssl
         sudo find / -name "openssl*"
       env:
-        OPENSSL_ROOT_DIR: '/usr/local/opt/openssl'
+        OPENSSL_ROOT_DIR: /usr/local/opt/openssl
     - name: cmake
       env:
         CXX: ${{ matrix.compiler }}
