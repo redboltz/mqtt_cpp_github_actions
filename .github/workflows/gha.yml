@@ -23,6 +23,7 @@ jobs:
       env:
         OPENSSL_ROOT_DIR: /usr/local/opt/openssl
         CXX: clang++
+        FLAGS: dummy
       shell: bash
       run: |
         if [ ${{ matrix.pattern }} == 0]; then 
