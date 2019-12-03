@@ -12,12 +12,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: install boost
-      if: matrix.os == 'macos-latest'
+    - name: install boost for linux
+      if: matrix.os == 'ubuntu-latest'
       run: |
         sudo add-apt-repository ppa:mhier/libboost-latest
         sudo apt-get update
         sudo apt-get install boost1.67
+    - name: install boost for macos
+      if: matrix.os == 'macos-latest'
+      run: |
+        brew install boost
     - name: cmake
       run: |
         mkdir build
