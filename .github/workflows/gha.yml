@@ -10,6 +10,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         compiler: [g++, clang++]
+        MQTT_USE_TLS: [ON, OFF]
         exclude:
         - os: macos-latest
           compiler: g++
