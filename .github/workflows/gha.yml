@@ -33,10 +33,14 @@ jobs:
         cd build
         cmake ..
     - name: make check_deps
+      env:
+        CC: ${{ matrix.compiler }}
       run: |
         cd build
         make check_deps VERBOSE=1
     - name: make
+      env:
+        CC: ${{ matrix.compiler }}
       run: |
         cd build
         make -j4 VERBOSE=1
