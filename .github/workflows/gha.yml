@@ -183,6 +183,7 @@ jobs:
     - name: codecov
       run: |
         if [ ${{ matrix.pattern }} == 4 ] || [ ${{ matrix.pattern }} == 5 ] || [ ${{ matrix.pattern }} == 6 ] || [ ${{ matrix.pattern }} == 7 ]; then
+           sudo apt-get install lcov
            # Create lcov report
            lcov --capture --directory . --output-file coverage.info
            lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter system-files
